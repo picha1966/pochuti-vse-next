@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     'Слухові апарати у Вінниці та Хмельницькому — продаж, налаштування, ремонт, діагностика слуху. Signia, Phonak, Widex, Oticon за гарними цінами.',
   authors: [{ name: 'Почути Все' }],
   creator: 'Почути Все',
-  metadataBase: new URL('https://sluh-apparat.vn.ua'),
+  metadataBase: new URL('https://pochutyvse.com.ua'),
   openGraph: {
     type: 'website',
     locale: 'uk_UA',
-    url: 'https://sluh-apparat.vn.ua',
+    url: 'https://pochutyvse.com.ua',
     siteName: 'Почути Все — Центр слуху',
     title: 'Слухові апарати | Купити Вінниця та Хмельницький',
     description:

@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { getAllProducts } from '@/lib/products';
 import { getAllPosts } from '@/lib/posts';
 
-const BASE = 'https://sluh-apparat.vn.ua';
+const BASE = 'https://pochutyvse.com.ua';
 
 const DATES = {
   homepage: new Date('2026-02-01'),
@@ -27,6 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/kupyty-sluhovyi-aparat-vinnytsia`,    lastModified: DATES.commercialPages,  changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/kupyty-sluhovyi-aparat-khmelnytskyi`, lastModified: DATES.commercialPages,  changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/nalashtuvannya-sluhovoho-aparata`,    lastModified: DATES.servicePages,     changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/remont-sluhovykh-aparativ`,           lastModified: DATES.servicePages,     changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/perevirka-slukhu-vinnytsia`,          lastModified: DATES.servicePages,     changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/perevirka-slukhu-khmelnytskyi`,       lastModified: DATES.servicePages,     changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/blog`,                                lastModified: DATES.blog,             changeFrequency: 'weekly',  priority: 0.7 },

@@ -13,7 +13,7 @@ const steps = [
   {
     number: '02',
     title: 'Діагностика слуху',
-    description: 'Фахівець проведе повноцінну аудіометрію та визначить ступінь втрати слуху.',
+    description: 'Фахівець проведе повноцінний скринінг слуху та визначить ступінь втрати слуху.',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -24,7 +24,7 @@ const steps = [
   {
     number: '03',
     title: 'Підбір апарату',
-    description: 'На основі аудіограми підберемо оптимальну модель з урахуванням вашого способу життя та бюджету.',
+    description: 'На основі результатів скринінгу слуху підберемо оптимальну модель з урахуванням вашого способу життя та бюджету.',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -35,7 +35,7 @@ const steps = [
   {
     number: '04',
     title: 'Налаштування і супровід',
-    description: 'Індивідуальне програмування апарату під аудіограму. Повторні налаштування перші 30 днів безкоштовно.',
+    description: 'Індивідуальне програмування апарату під профіль слуху. Повторні налаштування перші 30 днів безкоштовно.',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}

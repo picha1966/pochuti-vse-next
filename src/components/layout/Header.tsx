@@ -8,6 +8,7 @@ const nav = [
   { label: 'Головна', href: '/' },
   { label: 'Каталог', href: '/catalog' },
   { label: 'Налаштування апарата', href: '/nalashtuvannya-sluhovoho-aparata' },
+  { label: 'Ремонт', href: '/remont-sluhovykh-aparativ' },
   { label: 'Блог', href: '/blog' },
   { label: 'Вінниця', href: '/vinnytsia' },
   { label: 'Хмельницький', href: '/khmelnytskyi' },

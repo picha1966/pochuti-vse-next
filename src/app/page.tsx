@@ -34,11 +34,11 @@ export default function HomePage() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'LocalBusiness',
-            '@id': 'https://sluh-apparat.vn.ua/#business',
+            '@id': 'https://pochutyvse.com.ua/#business',
             name: 'Почути Все — Центр слуху',
-            url: 'https://sluh-apparat.vn.ua',
+            url: 'https://pochutyvse.com.ua',
             telephone: '+380679119548',
-            image: 'https://sluh-apparat.vn.ua/opengraph-image',
+            image: 'https://pochutyvse.com.ua/opengraph-image',
             priceRange: '₴₴',
             areaServed: [
               { '@type': 'City', name: 'Вінниця' },
@@ -60,8 +60,15 @@ export default function HomePage() {
               },
             ],
             description:
-              'Центр слуху «Почути Все» — купити слуховий апарат у Вінниці та Хмельницькому. Підбір, налаштування, аудіометрія. 30+ років досвіду, 5000+ клієнтів.',
-            openingHours: ['Mo-Fr 10:00-17:00'],
+              'Центр слуху «Почути Все» — купити слуховий апарат у Вінниці та Хмельницькому. Підбір, налаштування, скринінг слуху. 30+ років досвіду, 5000+ клієнтів.',
+            openingHoursSpecification: [
+              {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                opens: '10:00',
+                closes: '17:00',
+              },
+            ],
             aggregateRating: {
               '@type': 'AggregateRating',
               ratingValue: '4.9',
@@ -81,7 +88,7 @@ export default function HomePage() {
               itemListElement: [
                 { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Підбір слухового апарата' } },
                 { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Налаштування слухового апарата' } },
-                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Аудіометрія — перевірка слуху' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Скринінг слуху — перевірка' } },
               ],
             },
           }),
@@ -95,10 +102,10 @@ export default function HomePage() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Organization',
-            '@id': 'https://sluh-apparat.vn.ua/#organization',
+            '@id': 'https://pochutyvse.com.ua/#organization',
             name: 'Почути Все — Центр слуху',
-            url: 'https://sluh-apparat.vn.ua',
-            logo: 'https://sluh-apparat.vn.ua/logo.png',
+            url: 'https://pochutyvse.com.ua',
+            logo: 'https://pochutyvse.com.ua/logo.png',
             foundingDate: '1995',
             description: 'Центр слуху «Почути Все» — лідер у підборі слухових апаратів на Вінниччині та Хмельниччині.',
             contactPoint: {
@@ -123,11 +130,11 @@ export default function HomePage() {
             jobTitle: 'Слухопротезист, керівник центру слуху',
             worksFor: {
               '@type': 'LocalBusiness',
-              '@id': 'https://sluh-apparat.vn.ua/#business',
+              '@id': 'https://pochutyvse.com.ua/#business',
             },
             description: 'Слухопротезист з понад 30 роками досвіду у Вінниці та Хмельницькому.',
-            image: 'https://sluh-apparat.vn.ua/images/natalia-hutsol.png',
-            knowsAbout: ['слухопротезування', 'аудіометрія', 'налаштування слухових апаратів'],
+            image: 'https://pochutyvse.com.ua/images/natalia-hutsol.png',
+            knowsAbout: ['слухопротезування', 'скринінг слуху', 'налаштування слухових апаратів'],
           }),
         }}
       />
@@ -153,13 +160,13 @@ export default function HomePage() {
                 '@type': 'HowToStep',
                 position: 2,
                 name: 'Діагностика слуху',
-                text: 'Фахівець проведе повноцінну аудіометрію та визначить ступінь втрати слуху.',
+                text: 'Фахівець проведе повноцінний скринінг слуху та визначить ступінь втрати слуху.',
               },
               {
                 '@type': 'HowToStep',
                 position: 3,
                 name: 'Підбір апарату',
-                text: 'На основі аудіограми підберемо оптимальну модель з урахуванням вашого способу життя та бюджету.',
+                text: 'На основі результатів скринінгу слуху підберемо оптимальну модель з урахуванням вашого способу життя та бюджету.',
               },
               {
                 '@type': 'HowToStep',
@@ -185,7 +192,7 @@ export default function HomePage() {
                 name: 'Скільки коштує слуховий апарат?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Ціни на слухові апарати: базові цифрові — від 7 000 грн, середній клас з шумозаглушенням — від 14 000 грн, преміум з Bluetooth та зарядкою — від 25 000 грн. Конкретну модель визначаємо після безкоштовної аудіометрії. Можлива розстрочка та державна компенсація.',
+                  text: 'Ціни на слухові апарати: базові цифрові — від 7 000 грн, середній клас з шумозаглушенням — від 14 000 грн, преміум з Bluetooth та зарядкою — від 25 000 грн. Конкретну модель визначаємо після безкоштовного скринінгу слуху. Можлива розстрочка та державна компенсація.',
                 },
               },
               {
@@ -193,7 +200,7 @@ export default function HomePage() {
                 name: 'Чи потрібне направлення лікаря для перевірки слуху?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Ні. Ми проводимо безкоштовну аудіометрію без направлення та без попереднього запису до ЛОРа. Достатньо зателефонувати та обрати зручний час. Перевірка займає близько 30 хвилин.',
+                  text: 'Ні. Ми проводимо безкоштовний скринінг слуху без направлення та без попереднього запису до ЛОРа. Достатньо зателефонувати та обрати зручний час. Перевірка займає близько 30 хвилин.',
                 },
               },
               {
@@ -201,7 +208,7 @@ export default function HomePage() {
                 name: 'Чи підійде слуховий апарат для літньої людини?',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'Так, ми спеціалізуємося на підборі апаратів для людей різного віку. Для старшого покоління рекомендуємо завушні моделі з простим керуванням та тривалим ресурсом батарейок. Апарат підбирається індивідуально після аудіограми.',
+                  text: 'Так, ми спеціалізуємося на підборі апаратів для людей різного віку. Для старшого покоління рекомендуємо завушні моделі з простим керуванням та тривалим ресурсом батарейок. Апарат підбирається індивідуально після скринінгу слуху.',
                 },
               },
               {

@@ -27,4 +27,5 @@ export interface BlogPost {
   seoTitle: string;
   seoDescription: string;
   image: string;
+  author?: string;
 }

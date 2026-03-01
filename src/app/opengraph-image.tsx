@@ -57,7 +57,7 @@ export default function OgImage() {
 
         {/* Footer URL */}
         <div style={{ position: 'absolute', bottom: 32, color: 'rgba(255,255,255,0.4)', fontSize: 15 }}>
-          sluh-apparat.vn.ua
+          pochutyvse.com.ua
         </div>
       </div>
     ),

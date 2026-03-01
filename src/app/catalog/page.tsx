@@ -9,6 +9,13 @@ export const metadata: Metadata = {
   description:
     'Купити слуховий апарат у Вінниці та Хмельницькому. Широкий вибір Signia, Audio Service. Завушні та внутрішньовушні моделі всіх цінових категорій.',
   alternates: { canonical: '/catalog' },
+  openGraph: {
+    title: 'Каталог слухових апаратів — Вінниця та Хмельницький | Почути Все',
+    description:
+      'Купити слуховий апарат у Вінниці та Хмельницькому. Широкий вибір Signia, Audio Service. Завушні та внутрішньовушні моделі всіх цінових категорій.',
+    type: 'website',
+    locale: 'uk_UA',
+  },
 };
 
 // Human-readable labels for URL-encoded category slugs
@@ -223,7 +230,7 @@ export default async function CatalogPage({ searchParams }: PageProps) {
           Не знаєте, який апарат підійде?
         </h2>
         <p className="text-slate-600 mb-6 max-w-xl mx-auto">
-          Запишіться на консультацію — ми підберемо оптимальну модель після аудіограми, особисто для вас.
+          Запишіться на консультацію — ми підберемо оптимальну модель після скринінгу слуху, особисто для вас.
         </p>
         <a
           href="tel:+380679119548"

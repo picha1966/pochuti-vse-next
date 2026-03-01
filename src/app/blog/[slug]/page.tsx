@@ -85,20 +85,20 @@ export default async function BlogPostPage({ params }: PageProps) {
             datePublished: post.date,
             dateModified: post.date,
             inLanguage: 'uk',
-            url: `https://sluh-apparat.vn.ua/blog/${post.slug}`,
-            image: post.image ? `https://sluh-apparat.vn.ua${post.image}` : undefined,
+            url: `https://pochutyvse.com.ua/blog/${post.slug}`,
+            image: post.image ? `https://pochutyvse.com.ua${post.image}` : undefined,
             author: post.author
               ? { '@type': 'Person', name: post.author }
               : { '@type': 'Organization', name: 'Почути Все' },
             publisher: {
               '@type': 'Organization',
               name: 'Почути Все',
-              url: 'https://sluh-apparat.vn.ua',
-              logo: { '@type': 'ImageObject', url: 'https://sluh-apparat.vn.ua/logo.png' },
+              url: 'https://pochutyvse.com.ua',
+              logo: { '@type': 'ImageObject', url: 'https://pochutyvse.com.ua/logo.png' },
             },
             mainEntityOfPage: {
               '@type': 'WebPage',
-              '@id': `https://sluh-apparat.vn.ua/blog/${post.slug}`,
+              '@id': `https://pochutyvse.com.ua/blog/${post.slug}`,
             },
           }),
         }}
