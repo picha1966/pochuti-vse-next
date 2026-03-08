@@ -64,15 +64,15 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="relative bg-white overflow-hidden aspect-[4/3]">
           {hasImage ? (
             <Image
-              src={product.image}
-              alt={product.title}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-              onError={() => setImgError(true)}
-              unoptimized
-            />
+  src={product.image}
+  alt={product.title}
+  width={500}
+  height={400}
+  className="object-contain p-4 w-full h-full group-hover:scale-105 transition-transform duration-300"
+  loading="lazy"
+  onError={() => setImgError(true)}
+  unoptimized
+/>
           ) : (
             <HearingAidFallback />
           )}
