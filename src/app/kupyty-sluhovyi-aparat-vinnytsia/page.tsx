@@ -10,9 +10,10 @@ export const metadata: Metadata = {
   alternates: { canonical: '/kupyty-sluhovyi-aparat-vinnytsia' },
   openGraph: {
     title: 'Купити слуховий апарат у Вінниці | Центр слуху «Почути Все»',
-    description: 'Profesійний підбір та купівля слухових апаратів у Вінниці. 30+ років досвіду. Гарантія 1 рік. Дзвоніть: +38 (067) 911-95-48.',
+    description: 'Професійний підбір та купівля слухових апаратів у Вінниці. 30+ років досвіду. Гарантія 1 рік. Дзвоніть: +38 (067) 911-95-48.',
     type: 'website',
     locale: 'uk_UA',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
 };
 

@@ -55,7 +55,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const categoryLabel = categoryLabels[product.categorySlug] ?? product.categoryName;
   const badgeColor = categoryBadgeColors[product.categorySlug] ?? 'bg-slate-600';
   const priceFrom = product.price ? formatPriceFrom(product.price) : '';
-  const hasImage = !!product.image && product.image.startsWith('http') && !imgError;
+  const hasImage = !!product.image && !imgError;
 
   return (
     <article className="bg-white rounded-2xl border border-slate-100 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 group overflow-hidden flex flex-col">
@@ -71,6 +71,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
               onError={() => setImgError(true)}
+              unoptimized
             />
           ) : (
             <HearingAidFallback />

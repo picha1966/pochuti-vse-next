@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description: 'Як проходить налаштування слухового апарата. Програмування під профіль слуху у Вінниці та Хмельницькому. Тел: +38 (067) 911-95-48.',
     type: 'website',
     locale: 'uk_UA',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
 };
 

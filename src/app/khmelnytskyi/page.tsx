@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     description: 'Слухові апарати у Хмельницькому: ціни від 7 000 грн, безкоштовний скринінг слуху, налаштування, гарантія 1 рік. 30+ років досвіду. +38 (067) 911-95-48.',
     type: 'website',
     locale: 'uk_UA',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
 };
 

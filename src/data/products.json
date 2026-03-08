@@ -10,7 +10,7 @@
     "categorySlug": "%d0%b1%d0%b0%d0%b7%d0%be%d0%b2%d1%96-%d1%86%d0%b8%d1%84%d1%80%d0%be%d0%b2%d1%96",
     "categoryName": "БАЗОВІ ЦИФРОВІ",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/5-am-stf-p-t1_bg_removed-1.png-1.png"
+    "image": "/images/5-am-stf-p-t1_bg_removed-1.png-1.png"
   },
   {
     "id": 2,
@@ -23,7 +23,7 @@
     "categorySlug": "%d0%b1%d0%b0%d0%b7%d0%be%d0%b2%d1%96-%d1%86%d0%b8%d1%84%d1%80%d0%be%d0%b2%d1%96",
     "categoryName": "БАЗОВІ ЦИФРОВІ",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/2-siemens-signia-fast-p.jpg"
+    "image": "/images/2-siemens-signia-fast-p.jpg"
   },
   {
     "id": 3,
@@ -36,7 +36,7 @@
     "categorySlug": "%d0%b1%d0%b0%d0%b7%d0%be%d0%b2%d1%96-%d1%86%d0%b8%d1%84%d1%80%d0%be%d0%b2%d1%96",
     "categoryName": "БАЗОВІ ЦИФРОВІ",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/3-siemens-signia-fun-p.jpg"
+    "image": "/images/3-siemens-signia-fun-p.jpg"
   },
   {
     "id": 4,
@@ -49,7 +49,7 @@
     "categorySlug": "%d0%b1%d0%b0%d0%b7%d0%be%d0%b2%d1%96-%d1%86%d0%b8%d1%84%d1%80%d0%be%d0%b2%d1%96",
     "categoryName": "БАЗОВІ ЦИФРОВІ",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/4-siemens-signia-fun-sp.jpg"
+    "image": "/images/4-siemens-signia-fun-sp.jpg"
   },
   {
     "id": 5,
@@ -62,7 +62,7 @@
     "categorySlug": "%d0%b1%d0%b0%d0%b7%d0%be%d0%b2%d1%96-%d1%86%d0%b8%d1%84%d1%80%d0%be%d0%b2%d1%96",
     "categoryName": "БАЗОВІ ЦИФРОВІ",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/5-am-stf-p-t1_bg_removed-1.png-1.png"
+    "image": "/images/5-am-stf-p-t1_bg_removed-1.png-1.png"
   },
   {
     "id": 6,
@@ -75,7 +75,7 @@
     "categorySlug": "%d0%b1%d0%b0%d0%b7%d0%be%d0%b2%d1%96-%d1%86%d0%b8%d1%84%d1%80%d0%be%d0%b2%d1%96",
     "categoryName": "БАЗОВІ ЦИФРОВІ",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/6-am-stf-p-t3_bg_removed-1.png-1.webp"
+    "image": "/images/6-am-stf-p-t3_bg_removed-1.png-1.webp"
   },
   {
     "id": 7,
@@ -88,7 +88,7 @@
     "categorySlug": "%d0%b1%d0%b0%d0%b7%d0%be%d0%b2%d1%96-%d1%86%d0%b8%d1%84%d1%80%d0%be%d0%b2%d1%96",
     "categoryName": "БАЗОВІ ЦИФРОВІ",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/7-am-xtm-p-a4-300x279_bg_removed-1.png-1.webp"
+    "image": "/images/7-am-xtm-p-a4-300x279_bg_removed-1.png-1.webp"
   },
   {
     "id": 8,
@@ -101,7 +101,7 @@
     "categorySlug": "%d0%b1%d0%b0%d0%b7%d0%be%d0%b2%d1%96-%d1%86%d0%b8%d1%84%d1%80%d0%be%d0%b2%d1%96",
     "categoryName": "БАЗОВІ ЦИФРОВІ",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/8-audio-service-volta-p-t_bg_removed-1.png-1.webp"
+    "image": "/images/8-audio-service-volta-p-t_bg_removed-1.png-1.webp"
   },
   {
     "id": 9,
@@ -114,7 +114,7 @@
     "categorySlug": "%d0%b1%d0%b0%d0%b7%d0%be%d0%b2%d1%96-%d1%86%d0%b8%d1%84%d1%80%d0%be%d0%b2%d1%96",
     "categoryName": "БАЗОВІ ЦИФРОВІ",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/9-audio-service-volta-hp-t_bg_removed-1.png-1.png"
+    "image": "/images/9-audio-service-volta-hp-t_bg_removed-1.png-1.png"
   },
   {
     "id": 10,
@@ -127,7 +127,7 @@
     "categorySlug": "%d1%81%d0%b5%d1%80%d0%b5%d0%b4%d0%bd%d1%96%d0%b9-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "СЕРЕДНІЙ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/2-audio-service-volta-hp-c_bg_removed-1.png-1.webp"
+    "image": "/images/2-audio-service-volta-hp-c_bg_removed-1.png-1.webp"
   },
   {
     "id": 11,
@@ -140,7 +140,7 @@
     "categorySlug": "%d1%81%d0%b5%d1%80%d0%b5%d0%b4%d0%bd%d1%96%d0%b9-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "СЕРЕДНІЙ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/3-am-xtm-p6-p_bg_removed-1.png-1.webp"
+    "image": "/images/3-am-xtm-p6-p_bg_removed-1.png-1.webp"
   },
   {
     "id": 12,
@@ -153,7 +153,7 @@
     "categorySlug": "%d1%81%d0%b5%d1%80%d0%b5%d0%b4%d0%bd%d1%96%d0%b9-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "СЕРЕДНІЙ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/4-am-xtm-p6-xp_bg_removed-1.png-1.png"
+    "image": "/images/4-am-xtm-p6-xp_bg_removed-1.png-1.png"
   },
   {
     "id": 13,
@@ -166,7 +166,7 @@
     "categorySlug": "%d1%81%d0%b5%d1%80%d0%b5%d0%b4%d0%bd%d1%96%d0%b9-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "СЕРЕДНІЙ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/5-signia-run-p.jpg"
+    "image": "/images/5-signia-run-p.jpg"
   },
   {
     "id": 14,
@@ -179,7 +179,7 @@
     "categorySlug": "%d1%81%d0%b5%d1%80%d0%b5%d0%b4%d0%bd%d1%96%d0%b9-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "СЕРЕДНІЙ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/6-signia-run-sp_bg_removed-1.png-1.webp"
+    "image": "/images/6-signia-run-sp_bg_removed-1.png-1.webp"
   },
   {
     "id": 15,
@@ -192,7 +192,7 @@
     "categorySlug": "%d1%81%d0%b5%d1%80%d0%b5%d0%b4%d0%bd%d1%96%d0%b9-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "СЕРЕДНІЙ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/7-siemens-signia-intuis-2_bg_removed-1.png-1.webp"
+    "image": "/images/7-siemens-signia-intuis-2_bg_removed-1.png-1.webp"
   },
   {
     "id": 16,
@@ -205,7 +205,7 @@
     "categorySlug": "%d1%81%d0%b5%d1%80%d0%b5%d0%b4%d0%bd%d1%96%d0%b9-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "СЕРЕДНІЙ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/8-siemens-signia-intuis-3_bg_removed-1.png-1.webp"
+    "image": "/images/8-siemens-signia-intuis-3_bg_removed-1.png-1.webp"
   },
   {
     "id": 17,
@@ -218,7 +218,7 @@
     "categorySlug": "%d0%bf%d1%80%d0%b5%d0%bc%d1%96%d1%83%d0%bc-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "ПРЕМІУМ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/1-Signia-Styletto_bg_removed.png-e1740179052465.webp"
+    "image": "/images/1-Signia-Styletto_bg_removed.png-e1740179052465.webp"
   },
   {
     "id": 18,
@@ -231,7 +231,7 @@
     "categorySlug": "%d0%bf%d1%80%d0%b5%d0%bc%d1%96%d1%83%d0%bc-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "ПРЕМІУМ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/2-Signia-motion_bg_removed.png-e1740179040800.png"
+    "image": "/images/2-Signia-motion_bg_removed.png-e1740179040800.png"
   },
   {
     "id": 19,
@@ -244,7 +244,7 @@
     "categorySlug": "%d0%bf%d1%80%d0%b5%d0%bc%d1%96%d1%83%d0%bc-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "ПРЕМІУМ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/3-Signia-pure_bg_removed.png-e1740179027180.webp"
+    "image": "/images/3-Signia-pure_bg_removed.png-e1740179027180.webp"
   },
   {
     "id": 20,
@@ -257,7 +257,7 @@
     "categorySlug": "%d0%b2%d0%bd%d1%83%d1%82%d1%80%d1%96%d1%88%d0%bd%d1%8c%d0%be%d0%b2%d1%83%d1%88%d0%bd%d1%96-%d0%b0%d0%bf%d0%b0%d1%80%d0%b0%d1%82%d0%b8-%d1%81i%d1%81",
     "categoryName": "ВНУТРІШНЬОВУШНІ АПАРАТИ СIС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/1-AM-XTM-CIC-A4-513x514_bg_removed-1.png-1.webp"
+    "image": "/images/1-AM-XTM-CIC-A4-513x514_bg_removed-1.png-1.webp"
   },
   {
     "id": 21,
@@ -270,7 +270,7 @@
     "categorySlug": "%d0%b2%d0%bd%d1%83%d1%82%d1%80%d1%96%d1%88%d0%bd%d1%8c%d0%be%d0%b2%d1%83%d1%88%d0%bd%d1%96-%d0%b0%d0%bf%d0%b0%d1%80%d0%b0%d1%82%d0%b8-%d1%81i%d1%81",
     "categoryName": "ВНУТРІШНЬОВУШНІ АПАРАТИ СIС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/2-siemens-signia-run-click-cic_bg_removed-1.png-1.webp"
+    "image": "/images/2-siemens-signia-run-click-cic_bg_removed-1.png-1.webp"
   },
   {
     "id": 22,
@@ -283,7 +283,7 @@
     "categorySlug": "%d0%b2%d0%bd%d1%83%d1%82%d1%80%d1%96%d1%88%d0%bd%d1%8c%d0%be%d0%b2%d1%83%d1%88%d0%bd%d1%96-%d0%b0%d0%bf%d0%b0%d1%80%d0%b0%d1%82%d0%b8-%d1%81i%d1%81",
     "categoryName": "ВНУТРІШНЬОВУШНІ АПАРАТИ СIС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/5-siemens-signia-insio_bg_removed-1.png-1.webp"
+    "image": "/images/5-siemens-signia-insio_bg_removed-1.png-1.webp"
   },
   {
     "id": 23,
@@ -296,7 +296,7 @@
     "categorySlug": "%d0%b2%d0%bd%d1%83%d1%82%d1%80%d1%96%d1%88%d0%bd%d1%8c%d0%be%d0%b2%d1%83%d1%88%d0%bd%d1%96-%d0%b0%d0%bf%d0%b0%d1%80%d0%b0%d1%82%d0%b8-%d1%81i%d1%81",
     "categoryName": "ВНУТРІШНЬОВУШНІ АПАРАТИ СIС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/6-siemens-signia-silk_bg_removed-1.png-1.webp"
+    "image": "/images/6-siemens-signia-silk_bg_removed-1.png-1.webp"
   },
   {
     "id": 24,
@@ -309,7 +309,7 @@
     "categorySlug": "%d0%b2%d0%bd%d1%83%d1%82%d1%80%d1%96%d1%88%d0%bd%d1%8c%d0%be%d0%b2%d1%83%d1%88%d0%bd%d1%96-%d0%b0%d0%bf%d0%b0%d1%80%d0%b0%d1%82%d0%b8-%d1%81i%d1%81",
     "categoryName": "ВНУТРІШНЬОВУШНІ АПАРАТИ СIС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/7-signia-prompt-click-cic_bg_removed-1.png-1.webp"
+    "image": "/images/7-signia-prompt-click-cic_bg_removed-1.png-1.webp"
   },
   {
     "id": 25,
@@ -322,7 +322,7 @@
     "categorySlug": "%d1%81%d0%b5%d1%80%d0%b5%d0%b4%d0%bd%d1%96%d0%b9-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "СЕРЕДНІЙ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/9-siemens-signia-prompt-p_bg_removed-1.png-1.webp"
+    "image": "/images/9-siemens-signia-prompt-p_bg_removed-1.png-1.webp"
   },
   {
     "id": 26,
@@ -335,7 +335,7 @@
     "categorySlug": "%d1%81%d0%b5%d1%80%d0%b5%d0%b4%d0%bd%d1%96%d0%b9-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "СЕРЕДНІЙ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/10-siemens-signia-prompt-sp_bg_removed-1.png-1.webp"
+    "image": "/images/10-siemens-signia-prompt-sp_bg_removed-1.png-1.webp"
   },
   {
     "id": 27,
@@ -348,7 +348,7 @@
     "categorySlug": "%d0%b0%d0%ba%d1%81%d0%b5%d1%81%d1%83%d0%b0%d1%80%d0%b8",
     "categoryName": "АКСЕСУАРИ",
     "isAccessory": true,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/1-vushniy-vkladish.webp"
+    "image": "/images/1-vushniy-vkladish.webp"
   },
   {
     "id": 28,
@@ -361,7 +361,7 @@
     "categorySlug": "%d0%b0%d0%ba%d1%81%d0%b5%d1%81%d1%83%d0%b0%d1%80%d0%b8",
     "categoryName": "АКСЕСУАРИ",
     "isAccessory": true,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/2-batareiki_bg_removed-1.png-1.webp"
+    "image": "/images/2-batareiki_bg_removed-1.png-1.webp"
   },
   {
     "id": 29,
@@ -374,7 +374,7 @@
     "categorySlug": "%d0%b0%d0%ba%d1%81%d0%b5%d1%81%d1%83%d0%b0%d1%80%d0%b8",
     "categoryName": "АКСЕСУАРИ",
     "isAccessory": true,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/3-filtri_bg_removed-1.png-1.webp"
+    "image": "/images/3-filtri_bg_removed-1.png-1.webp"
   },
   {
     "id": 30,
@@ -387,7 +387,7 @@
     "categorySlug": "%d0%b0%d0%ba%d1%81%d0%b5%d1%81%d1%83%d0%b0%d1%80%d0%b8",
     "categoryName": "АКСЕСУАРИ",
     "isAccessory": true,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/4-tabletki-sushki_bg_removed-1.png-1.webp"
+    "image": "/images/4-tabletki-sushki_bg_removed-1.png-1.webp"
   },
   {
     "id": 31,
@@ -400,7 +400,7 @@
     "categorySlug": "%d0%b0%d0%ba%d1%81%d0%b5%d1%81%d1%83%d0%b0%d1%80%d0%b8",
     "categoryName": "АКСЕСУАРИ",
     "isAccessory": true,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/tester2_bg_removed-1.png-1.webp"
+    "image": "/images/tester2_bg_removed-1.png-1.webp"
   },
   {
     "id": 32,
@@ -413,7 +413,7 @@
     "categorySlug": "%d0%b0%d0%ba%d1%81%d0%b5%d1%81%d1%83%d0%b0%d1%80%d0%b8",
     "categoryName": "АКСЕСУАРИ",
     "isAccessory": true,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/dergatel_bg_removed-1.png-1.webp"
+    "image": "/images/dergatel_bg_removed-1.png-1.webp"
   },
   {
     "id": 33,
@@ -426,7 +426,7 @@
     "categorySlug": "%d0%b0%d0%ba%d1%81%d0%b5%d1%81%d1%83%d0%b0%d1%80%d0%b8",
     "categoryName": "АКСЕСУАРИ",
     "isAccessory": true,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/schetka_bg_removed-1.png-1.png"
+    "image": "/images/schetka_bg_removed-1.png-1.png"
   },
   {
     "id": 34,
@@ -439,6 +439,6 @@
     "categorySlug": "%d1%81%d0%b5%d1%80%d0%b5%d0%b4%d0%bd%d1%96%d0%b9-%d0%ba%d0%bb%d0%b0%d1%81",
     "categoryName": "СЕРЕДНІЙ КЛАС",
     "isAccessory": false,
-    "image": "https://pochutyvse.com.ua/wp-content/uploads/2025/03/7-am-xtm-p-a4_bg_removed-1.png-1.webp"
+    "image": "/images/7-am-xtm-p-a4_bg_removed-1.png-1.webp"
   }
 ]

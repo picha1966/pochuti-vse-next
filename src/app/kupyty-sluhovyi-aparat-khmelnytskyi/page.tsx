@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description: 'Підбір та купівля слухових апаратів у Хмельницькому. 30+ років досвіду. Гарантія 1 рік. Дзвоніть: +38 (067) 911-95-48.',
     type: 'website',
     locale: 'uk_UA',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
 };
 

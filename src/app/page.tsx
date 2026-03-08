@@ -133,7 +133,7 @@ export default function HomePage() {
               '@id': 'https://pochutyvse.com.ua/#business',
             },
             description: 'Слухопротезист з понад 30 роками досвіду у Вінниці та Хмельницькому.',
-            image: 'https://pochutyvse.com.ua/images/natalia-hutsol.png',
+            image: 'https://pochutyvse.com.ua/og-image.jpg',
             knowsAbout: ['слухопротезування', 'скринінг слуху', 'налаштування слухових апаратів'],
           }),
         }}

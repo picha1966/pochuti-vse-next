@@ -28,6 +28,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       locale: 'uk_UA',
       publishedTime: post.date,
       authors: post.author ? [post.author] : undefined,
+      images: post.image
+        ? [{ url: `https://pochutyvse.com.ua${post.image}`, width: 1200, height: 630 }]
+        : [{ url: '/og-image.jpg', width: 1200, height: 630 }],
     },
   };
 }
