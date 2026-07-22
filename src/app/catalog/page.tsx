@@ -15,6 +15,8 @@ export const metadata: Metadata = {
       'Купити слуховий апарат у Вінниці та Хмельницькому. Широкий вибір Signia, Audio Service. Завушні та внутрішньовушні моделі всіх цінових категорій.',
     type: 'website',
     locale: 'uk_UA',
+    url: '/catalog',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
 };
 
