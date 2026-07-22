@@ -16,6 +16,7 @@ export const metadata: Metadata = {
       'Гарантійний і позагарантійний ремонт слухових апаратів у Вінниці та Хмельницькому. Власна майстерня, досвід 30+ років.',
     type: 'website',
     locale: 'uk_UA',
+    url: '/remont-sluhovykh-aparativ',
     images: [{ url: '/images/remont-sluhovykh-aparativ.webp', width: 1200, height: 630 }],
   },
 };
