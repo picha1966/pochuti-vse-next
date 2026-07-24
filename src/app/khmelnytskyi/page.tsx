@@ -8,13 +8,13 @@ import ContactSection from '@/components/home/ContactSection';
 import StickyMobileCTA from '@/components/StickyMobileCTA';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Купити слуховий апарат у Хмельницькому — Підбір та Ціни | Почути Все' },
+  title: { absolute: 'Центр слуху у Хмельницькому — послуги та консультація | Почути Все' },
   description:
-    'Купити слуховий апарат у Хмельницькому — підбір після скринінгу слуху, налаштування, ціни від 7 000 грн. 30+ років досвіду. Вул. Кам\'янецька, 19/А. +38 (067) 911-95-48.',
+    'Центр слуху «Почути Все» у Хмельницькому: діагностика слуху, підбір та налаштування апаратів, сервісне обслуговування. 30+ років досвіду. Вул. Кам\'янецька, 19/А. +38 (067) 911-95-48.',
   alternates: { canonical: '/khmelnytskyi' },
   openGraph: {
-    title: 'Купити слуховий апарат у Хмельницькому | Ціни та Підбір | Почути Все',
-    description: 'Слухові апарати у Хмельницькому: ціни від 7 000 грн, безкоштовний скринінг слуху, налаштування, гарантія 1 рік. 30+ років досвіду. +38 (067) 911-95-48.',
+    title: 'Центр слуху «Почути Все» у Хмельницькому',
+    description: 'Центр слуху у Хмельницькому: діагностика слуху, підбір та налаштування апаратів, сервісне обслуговування. 30+ років досвіду. +38 (067) 911-95-48.',
     type: 'website',
     locale: 'uk_UA',
     url: '/khmelnytskyi',
@@ -221,7 +221,7 @@ export default async function KhmelnytskyiPage() {
                 Центр слуху у Хмельницькому
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4">
-                Слухові апарати у Хмельницькому — купити та підібрати
+                Центр слуху «Почути Все» у Хмельницькому
               </h1>
               <p className="text-lg text-white/85 leading-relaxed mb-8 max-w-xl mx-auto">
                 Турботливий та уважний підхід до вашого слуху. Безкоштовна діагностика,
@@ -737,6 +737,10 @@ export default async function KhmelnytskyiPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap gap-4 text-sm">
           <Link href="/kupyty-sluhovyi-aparat-khmelnytskyi" className="text-[#1F3D2B] font-semibold hover:underline">
             Купити слуховий апарат у Хмельницькому →
+          </Link>
+          <span className="text-slate-300 hidden sm:inline">·</span>
+          <Link href="/perevirka-slukhu-khmelnytskyi" className="text-[#1F3D2B] font-semibold hover:underline">
+            Перевірка слуху та підбір апарата у Хмельницькому →
           </Link>
           <span className="text-slate-300 hidden sm:inline">·</span>
           <Link href="/nalashtuvannya-sluhovoho-aparata" className="text-[#1F3D2B] font-semibold hover:underline">

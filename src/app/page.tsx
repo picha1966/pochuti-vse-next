@@ -303,6 +303,10 @@ export default async function HomePage() {
             Купити слуховий апарат у Хмельницькому
           </a>
           <span className="text-slate-300" aria-hidden="true">·</span>
+          <a href="/khmelnytskyi" className="hover:text-[#1F3D2B] transition-colors hover:underline">
+            Центр слуху у Хмельницькому
+          </a>
+          <span className="text-slate-300" aria-hidden="true">·</span>
           <a href="/nalashtuvannya-sluhovoho-aparata" className="hover:text-[#1F3D2B] transition-colors hover:underline">
             Налаштування слухового апарата
           </a>

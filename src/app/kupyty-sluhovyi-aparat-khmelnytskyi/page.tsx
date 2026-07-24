@@ -239,6 +239,10 @@ export default function BuyKhmelnytskyi() {
               ← Центр слуху у Хмельницькому
             </Link>
             <span className="text-slate-300">·</span>
+            <Link href="/perevirka-slukhu-khmelnytskyi" className="text-[#1F3D2B] text-sm font-semibold hover:underline">
+              Перевірка слуху та підбір апарата у Хмельницькому
+            </Link>
+            <span className="text-slate-300">·</span>
             <Link href="/nalashtuvannya-sluhovoho-aparata" className="text-[#1F3D2B] text-sm font-semibold hover:underline">
               Налаштування слухового апарата
             </Link>
