@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     title: 'Слухові апарати | Купити Вінниця та Хмельницький',
     description:
       'Слухові апарати у Вінниці та Хмельницькому — продаж, налаштування, ремонт, діагностика слуху.',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -45,6 +46,9 @@ export const metadata: Metadata = {
       { rel: 'icon', type: 'image/png', sizes: '32x32', url: '/favicon-32x32.png' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', url: '/favicon-16x16.png' },
     ],
+  },
+  other: {
+    'ahrefs-site-verification': 'c58862c5be13d5817fe1b9c061706f8335f99ee39535f6e440bf4cbf0cbec91a',
   },
   robots: {
     index: true,

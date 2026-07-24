@@ -1,3 +1,7 @@
+// Disabled: this route used the Edge runtime (`next/og` ImageResponse),
+// which is unreliable on this self-hosted pm2/node deployment (not
+// Vercel). All pages now reference the static /og-image.jpg instead.
+// Kept here, inactive, in case Edge-based OG generation is revisited.
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';

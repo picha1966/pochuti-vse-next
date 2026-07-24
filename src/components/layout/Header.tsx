@@ -4,11 +4,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
-const nav = [
+export const nav = [
   { label: 'Головна', href: '/' },
   { label: 'Каталог', href: '/catalog' },
   { label: 'Налаштування апарата', href: '/nalashtuvannya-sluhovoho-aparata' },
   { label: 'Ремонт', href: '/remont-sluhovykh-aparativ' },
+  { label: 'Все про слух', href: '/vse-pro-slukh' },
   { label: 'Блог', href: '/blog' },
   { label: 'Вінниця', href: '/vinnytsia' },
   { label: 'Хмельницький', href: '/khmelnytskyi' },

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import HeroBanner from '@/components/home/HeroBanner';
 import HowItWorks from '@/components/home/HowItWorks';
 import CategoryGrid from '@/components/home/CategoryGrid';
@@ -16,6 +18,7 @@ import UrgencySection from '@/components/home/UrgencySection';
 import ContactSection from '@/components/home/ContactSection';
 import StickyMobileCTA from '@/components/StickyMobileCTA';
 import BackToTop from '@/components/BackToTop';
+import { getAllPosts } from '@/lib/posts';
 
 export const metadata: Metadata = {
   title: { absolute: 'Слухові апарати у Вінниці та Хмельницькому | Почути Все' },
@@ -24,9 +27,34 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const recentPosts = (await getAllPosts()).slice(0, 3);
+
   return (
     <>
+      {/* JSON-LD: WebSite with SearchAction */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            '@id': 'https://pochutyvse.com.ua/#website',
+            name: 'Почути Все — Центр слуху',
+            url: 'https://pochutyvse.com.ua',
+            inLanguage: 'uk',
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: {
+                '@type': 'EntryPoint',
+                urlTemplate: 'https://pochutyvse.com.ua/catalog?search={search_term_string}',
+              },
+              'query-input': 'required name=search_term_string',
+            },
+          }),
+        }}
+      />
+
       {/* JSON-LD: LocalBusiness with AggregateRating */}
       <script
         type="application/ld+json"
@@ -38,7 +66,7 @@ export default function HomePage() {
             name: 'Почути Все — Центр слуху',
             url: 'https://pochutyvse.com.ua',
             telephone: '+380679119548',
-            image: 'https://pochutyvse.com.ua/opengraph-image',
+            image: 'https://pochutyvse.com.ua/og-image.jpg',
             priceRange: '₴₴',
             areaServed: [
               { '@type': 'City', name: 'Вінниця' },
@@ -286,8 +314,60 @@ export default function HomePage() {
           <a href="/perevirka-slukhu-khmelnytskyi" className="hover:text-[#1F3D2B] transition-colors hover:underline">
             Перевірка слуху у Хмельницькому
           </a>
+          <span className="text-slate-300" aria-hidden="true">·</span>
+          <a href="/vse-pro-slukh" className="hover:text-[#1F3D2B] transition-colors hover:underline">
+            Все про слух
+          </a>
         </div>
       </div>
+
+      {/* Latest blog articles — passes PageRank from homepage to blog */}
+      {recentPosts.length > 0 && (
+        <section className="bg-white border-t border-slate-100 py-14">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl font-extrabold text-slate-900">Корисні статті</h2>
+              <Link href="/blog" className="text-sm font-semibold text-[#1F3D2B] hover:underline">
+                Всі статті →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {recentPosts.map((post) => (
+                <article key={post.slug} className="group">
+                  <Link href={`/blog/${post.slug}`}>
+                    <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-100 mb-4">
+                      {post.image && post.image !== '/images/placeholder.jpg' ? (
+                        <Image
+                          src={post.image}
+                          alt={post.imageAlt || post.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-slate-300">
+                          <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}
+                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="font-bold text-slate-900 group-hover:text-[#1F3D2B] transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                  </Link>
+                  {post.excerpt && (
+                    <p className="mt-2 text-sm text-slate-500 line-clamp-2">
+                      {post.excerpt.replace(/<[^>]+>/g, '').slice(0, 120)}
+                    </p>
+                  )}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <ContactSection />
       <StickyMobileCTA />

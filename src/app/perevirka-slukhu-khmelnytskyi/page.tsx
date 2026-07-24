@@ -16,7 +16,7 @@ export const metadata: Metadata = {
       'Перевірка слуху у Хмельницькому — комп\'ютерний скринінг слуху. Безкоштовно лише при покупці слухового апарата у нашому центрі. Запис на консультацію.',
     type: 'website',
     locale: 'uk_UA',
-    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
 };
 
