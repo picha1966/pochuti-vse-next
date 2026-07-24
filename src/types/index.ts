@@ -18,7 +18,7 @@ export interface Category {
 }
 
 export interface BlogPost {
-  id: number;
+  _id: string;
   title: string;
   slug: string;
   content: string;
@@ -27,5 +27,13 @@ export interface BlogPost {
   seoTitle: string;
   seoDescription: string;
   image: string;
+  imageAlt?: string;
   author?: string;
+  category?: string;
+  publishedAt?: string | null;
+  mainImage?: {
+    asset?: {
+      url?: string;
+    };
+  };
 }

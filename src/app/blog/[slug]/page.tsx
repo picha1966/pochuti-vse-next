@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getAllPosts, getPostBySlug } from '@/lib/posts';
 import Breadcrumb from '@/components/ui/Breadcrumb';
@@ -8,29 +9,65 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+type StaticParamPost = {
+  slug?: string | { current?: string } | null;
+};
+
+export const revalidate = 86400;
+
 export async function generateStaticParams() {
   const posts = await getAllPosts();
-  return posts.map((p) => ({ slug: p.slug }));
+
+  return posts
+    .map((p: StaticParamPost) => {
+      const sourceSlug = p.slug;
+      const slug =
+        typeof sourceSlug === 'string'
+          ? sourceSlug
+          : typeof sourceSlug?.current === 'string'
+          ? sourceSlug.current
+          : null;
+
+      return slug ? { slug } : null;
+    })
+    .filter(Boolean) as { slug: string }[];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return {};
+
+  const description =
+    post.seoDescription ||
+    (post.excerpt ? post.excerpt.replace(/<[^>]+>/g, '').slice(0, 155) : '') ||
+    post.title;
+
+  const ogImage = post.image
+    ? [{ url: `https://pochutyvse.com.ua${post.image}`, width: 1200, height: 630, alt: post.imageAlt || post.title }]
+    : [{ url: 'https://pochutyvse.com.ua/og-image.jpg', width: 1200, height: 630 }];
+
   return {
     title: { absolute: post.seoTitle || post.title },
-    description: post.seoDescription || post.excerpt?.slice(0, 155),
+    description,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title: post.seoTitle || post.title,
-      description: post.seoDescription || post.excerpt?.slice(0, 155),
+      description,
       type: 'article',
       locale: 'uk_UA',
+      url: `/blog/${slug}`,
       publishedTime: post.date,
       authors: post.author ? [post.author] : undefined,
+      images: ogImage,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.seoTitle || post.title,
+      description,
       images: post.image
-        ? [{ url: `https://pochutyvse.com.ua${post.image}`, width: 1200, height: 630 }]
-        : [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+        ? [`https://pochutyvse.com.ua${post.image}`]
+        : ['https://pochutyvse.com.ua/og-image.jpg'],
     },
   };
 }
@@ -44,68 +81,152 @@ function formatDate(dateStr: string): string {
   });
 }
 
+function markdownToHtml(markdown: string): string {
+  const lines = markdown.split('\n');
+  const html: string[] = [];
+  let inList = false;
+
+  const closeList = () => {
+    if (inList) {
+      html.push('</ul>');
+      inList = false;
+    }
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+
+    if (!line) {
+      closeList();
+      continue;
+    }
+
+    const h3 = line.match(/^###\s+(.+)$/);
+    if (h3) {
+      closeList();
+      html.push(`<h3>${h3[1]}</h3>`);
+      continue;
+    }
+
+    const h2 = line.match(/^##\s+(.+)$/);
+    if (h2) {
+      closeList();
+      html.push(`<h2>${h2[1]}</h2>`);
+      continue;
+    }
+
+    // Markdown # heading → render as h2 (page template already has h1)
+    const h1 = line.match(/^#\s+(.+)$/);
+    if (h1) {
+      closeList();
+      html.push(`<h2>${h1[1]}</h2>`);
+      continue;
+    }
+
+    const listItem = line.match(/^[-*]\s+(.+)$/);
+    if (listItem) {
+      if (!inList) {
+        html.push('<ul>');
+        inList = true;
+      }
+      html.push(`<li>${listItem[1]}</li>`);
+      continue;
+    }
+
+    closeList();
+    html.push(`<p>${line}</p>`);
+  }
+
+  closeList();
+  return html.join('\n');
+}
+
 function renderContent(html: string): string {
-  return html
-    // Strip WordPress shortcodes
+  const cleaned = html
     .replace(/\[.*?\]/g, '')
-    // Strip data-start / data-end attributes
-    .replace(/data-start="\d+"[^>]*>/g, '>')
-    .replace(/data-end="\d+"[^>]*/g, '')
-    // Strip HTML comments (including unclosed ones like <!-- CLEANED...)
-    .replace(/<!--[\s\S]*?(-->|$)/g, '')
-    // Strip any <a> tags linking to the old WordPress domain
+    .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/<a[^>]*sluh-apparat\.vn\.ua\/wp-content[^>]*>[\s\S]*?<\/a>/gi, '')
     .replace(/<a[^>]*sluh-apparat\.vn\.ua\/product[^>]*>[\s\S]*?<\/a>/gi, '')
-    // Strip <img> tags pointing to the old WordPress domain
     .replace(/<img[^>]*sluh-apparat\.vn\.ua\/wp-content[^>]*\/?>/gi, '')
-    // Strip leftover WooCommerce inline price markup
     .replace(/<bdi>[^<]*<\/bdi>/gi, '')
-    // Strip <h3> tags wrapping old product links
     .replace(/<h3><a[^>]*sluh-apparat\.vn\.ua[^>]*>[\s\S]*?<\/a><\/h3>/gi, '')
-    // Collapse multiple blank lines
-    .replace(/(\s*<\/p>\s*){2,}/g, '</p>');
+    .replace(/(\s*<\/p>\s*){2,}/g, '</p>')
+    // Downgrade <h1> in body content to <h2> — page template already has the h1
+    .replace(/<h1([^>]*)>/gi, '<h2$1>')
+    .replace(/<\/h1>/gi, '</h2>');
+
+  if (/<[a-z][\s\S]*>/i.test(cleaned)) return cleaned;
+
+  return markdownToHtml(cleaned);
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const rawSlug = (await params).slug;
+  const slug = decodeURIComponent(rawSlug);
+
+  let post = await getPostBySlug(slug);
+
+  if (!post && rawSlug !== slug) {
+    post = await getPostBySlug(rawSlug);
+  }
+
   if (!post) notFound();
 
   const allPosts = await getAllPosts();
-  const related = allPosts.filter((p) => p.slug !== slug).slice(0, 2);
+
+  // Related posts: same category first, then other posts — exclude current
+  const sameCategoryPosts = post.category
+    ? allPosts.filter((p) => p.slug !== slug && p.category === post!.category)
+    : [];
+  const otherPosts = allPosts.filter(
+    (p) => p.slug !== slug && p.category !== post!.category
+  );
+  const related = [...sameCategoryPosts, ...otherPosts].slice(0, 2);
+
+  const description =
+    post.seoDescription ||
+    (post.excerpt ? post.excerpt.replace(/<[^>]+>/g, '').slice(0, 155) : '') ||
+    post.title;
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://pochutyvse.com.ua' },
+      { '@type': 'ListItem', position: 2, name: 'Блог', item: 'https://pochutyvse.com.ua/blog' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `https://pochutyvse.com.ua/blog/${post.slug}` },
+    ],
+  };
+
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.seoTitle || post.title,
+    description,
+    datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: 'uk',
+    url: `https://pochutyvse.com.ua/blog/${post.slug}`,
+    image: post.image ? `https://pochutyvse.com.ua${post.image}` : 'https://pochutyvse.com.ua/og-image.jpg',
+    author: post.author
+      ? { '@type': 'Person', name: post.author, worksFor: { '@type': 'Organization', name: 'Почути Все', url: 'https://pochutyvse.com.ua' } }
+      : { '@type': 'Organization', name: 'Почути Все', url: 'https://pochutyvse.com.ua' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Почути Все',
+      url: 'https://pochutyvse.com.ua',
+      logo: { '@type': 'ImageObject', url: 'https://pochutyvse.com.ua/logo.png' },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://pochutyvse.com.ua/blog/${post.slug}`,
+    },
+  };
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-      {/* JSON-LD BlogPosting */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: post.seoTitle || post.title,
-            description: post.seoDescription || post.excerpt?.slice(0, 155),
-            datePublished: post.date,
-            dateModified: post.date,
-            inLanguage: 'uk',
-            url: `https://pochutyvse.com.ua/blog/${post.slug}`,
-            image: post.image ? `https://pochutyvse.com.ua${post.image}` : undefined,
-            author: post.author
-              ? { '@type': 'Person', name: post.author }
-              : { '@type': 'Organization', name: 'Почути Все' },
-            publisher: {
-              '@type': 'Organization',
-              name: 'Почути Все',
-              url: 'https://pochutyvse.com.ua',
-              logo: { '@type': 'ImageObject', url: 'https://pochutyvse.com.ua/logo.png' },
-            },
-            mainEntityOfPage: {
-              '@type': 'WebPage',
-              '@id': `https://pochutyvse.com.ua/blog/${post.slug}`,
-            },
-          }),
-        }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 
       <Breadcrumb
         items={[
@@ -118,26 +239,65 @@ export default async function BlogPostPage({ params }: PageProps) {
       <article className="mt-6">
         <header className="mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-xs font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full">
-              Корисні статті
-            </span>
+            {post.category && (
+              <Link
+                href={`/blog/category/${encodeURIComponent(post.category.toLowerCase().replace(/\s+/g, '-'))}`}
+                className="text-xs font-medium text-[#1F3D2B] bg-green-50 px-2.5 py-1 rounded-full hover:bg-green-100 transition-colors"
+              >
+                {post.category}
+              </Link>
+            )}
+            {!post.category && (
+              <span className="text-xs font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full">
+                Корисні статті
+              </span>
+            )}
             {post.date && (
               <span className="text-sm text-slate-400">{formatDate(post.date)}</span>
             )}
           </div>
+
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
             {post.title}
           </h1>
+
           {post.excerpt && (
-            <p className="mt-4 text-xl text-slate-600 leading-relaxed">{post.excerpt.slice(0, 200)}</p>
+            <p className="mt-4 text-xl text-slate-600 leading-relaxed">
+              {post.excerpt.replace(/<[^>]+>/g, '').slice(0, 200)}
+            </p>
+          )}
+
+          {post.author && (
+            <div className="mt-4 flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-[#1F3D2B] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                {post.author.charAt(0)}
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-slate-800">{post.author}</p>
+                <p className="text-xs text-slate-500">Фахівець центру слуху «Почути Все»</p>
+              </div>
+            </div>
           )}
         </header>
 
+        {/* Featured image */}
+        {post.image && post.image !== '/images/placeholder.jpg' && (
+          <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-8">
+            <Image
+              src={post.image}
+              alt={post.imageAlt || post.title}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 896px"
+            />
+          </div>
+        )}
+
         {/* Article content */}
-        <div
-          className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:text-slate-900 prose-p:text-slate-700 prose-p:leading-relaxed prose-a:text-[#1F3D2B] prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-ul:text-slate-700 prose-ol:text-slate-700"
-          dangerouslySetInnerHTML={{ __html: renderContent(post.content) }}
-        />
+        <div className="prose prose-lg max-w-none prose-headings:font-extrabold prose-headings:text-slate-900 prose-p:text-slate-700 prose-p:leading-relaxed prose-a:text-[#1F3D2B] prose-a:no-underline hover:prose-a:underline prose-strong:text-slate-900 prose-ul:text-slate-700 prose-ol:text-slate-700">
+          <div dangerouslySetInnerHTML={{ __html: renderContent(post.content as string) }} />
+        </div>
       </article>
 
       {/* CTA */}
@@ -165,14 +325,16 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {related.map((p) => (
               <Link
-                key={p.id}
+                key={p._id || `${p.slug}-${p.date}`}
                 href={`/blog/${p.slug}`}
                 className="bg-white rounded-xl border border-slate-100 p-5 hover:shadow-md transition-shadow group"
               >
                 <h3 className="font-bold text-slate-900 group-hover:text-[#1F3D2B] transition-colors mb-2">
                   {p.title}
                 </h3>
-                <p className="text-sm text-slate-500 line-clamp-2">{p.excerpt}</p>
+                <p className="text-sm text-slate-500 line-clamp-2">
+                  {(p.excerpt || '').replace(/<[^>]+>/g, '').slice(0, 120)}
+                </p>
               </Link>
             ))}
           </div>

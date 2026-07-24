@@ -82,7 +82,7 @@ const productFields = groq`
 `;
 
 const postFields = groq`
-  _id, title, "slug": slug.current, excerpt,
+  _id, _createdAt, title, "slug": slug.current, excerpt,
   coverImage{ asset, alt },
   content, publishedAt, cityTarget,
   seo{ metaTitle, metaDescription, ogImage }
@@ -115,26 +115,26 @@ export const getPostBySlugQuery = groq`
 const REVALIDATE = 3600; // 1 hour
 
 export async function sanityGetAllProducts(): Promise<SanityProduct[]> {
-  if (!isSanityConfigured) return [];
+  if (!isSanityConfigured || !serverClient) return [];
   return serverClient.fetch(getAllProductsQuery, {}, { next: { revalidate: REVALIDATE } });
 }
 
 export async function sanityGetProductBySlug(slug: string): Promise<SanityProduct | null> {
-  if (!isSanityConfigured) return null;
+  if (!isSanityConfigured || !serverClient) return null;
   return serverClient.fetch(getProductBySlugQuery, { slug }, { next: { revalidate: REVALIDATE } });
 }
 
 export async function sanityGetAllCategories(): Promise<SanityCategory[]> {
-  if (!isSanityConfigured) return [];
+  if (!isSanityConfigured || !serverClient) return [];
   return serverClient.fetch(getAllCategoriesQuery, {}, { next: { revalidate: REVALIDATE } });
 }
 
 export async function sanityGetAllPosts(): Promise<SanityPost[]> {
-  if (!isSanityConfigured) return [];
-  return serverClient.fetch(getAllPostsQuery, {}, { next: { revalidate: REVALIDATE } });
+  if (!isSanityConfigured || !serverClient) return [];
+  return serverClient.fetch(getAllPostsQuery, {}, { cache: 'no-store' });
 }
 
 export async function sanityGetPostBySlug(slug: string): Promise<SanityPost | null> {
-  if (!isSanityConfigured) return null;
-  return serverClient.fetch(getPostBySlugQuery, { slug }, { next: { revalidate: REVALIDATE } });
+  if (!isSanityConfigured || !serverClient) return null;
+  return serverClient.fetch(getPostBySlugQuery, { slug }, { cache: 'no-store' });
 }

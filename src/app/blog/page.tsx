@@ -1,107 +1,111 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
-import posts from '@/data/posts.json';
+import Link from 'next/link';
+import { getAllPosts } from '@/lib/posts';
+
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: { absolute: 'Блог про слухові апарати — поради фахівців | Почути Все' },
   description:
-    'Корисні статті про слухові апарати, слухопротезування, догляд за слухом та вибір апарата. Поради від фахівців центру «Почути Все» у Вінниці та Хмельницькому.',
+    'Корисні статті про слухові апарати, слухопротезування, догляд за слухом та вибір апарата.',
   alternates: { canonical: '/blog' },
+  openGraph: {
+    title: 'Блог про слухові апарати — поради фахівців | Почути Все',
+    description:
+      'Корисні статті про слухові апарати, слухопротезування, догляд за слухом та вибір апарата.',
+    type: 'website',
+    locale: 'uk_UA',
+    url: '/blog',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+  },
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const allPosts = await getAllPosts();
+  const posts = allPosts;
+
+  if (!posts || posts.length === 0) {
+    return (
+      <div className="p-10 text-center text-slate-500">
+        Немає статей
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#f8fafc]">
-      {/* Header */}
-      <div className="bg-white border-b border-slate-100 py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="text-slate-500 font-semibold text-sm uppercase tracking-wider">
-            Корисні матеріали
-          </span>
-          <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
-            Блог про слухові апарати — поради фахівців центру «Почути Все»
+      <div className="bg-white border-b border-slate-100 py-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <h1 className="text-3xl font-extrabold text-slate-900">
+            Блог
           </h1>
-          <p className="mt-4 text-slate-600 text-base max-w-2xl leading-relaxed">
-            Статті про слухопротезування, вибір апарата, догляд за слухом та відповіді на найчастіші питання наших клієнтів.
+          <p className="mt-2 text-slate-500">
+            Поради фахівців центру слуху «Почути Все» — слухопротезування, апарати, здоров&apos;я слуху
           </p>
         </div>
       </div>
 
-      {/* Posts grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-4 py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
             <article
-              key={post.id}
-              className="bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-md transition-shadow flex flex-col"
+              key={post.slug + (post.publishedAt || post._id || '')}
+              className="bg-white rounded-xl border p-4 flex flex-col"
             >
-              {/* Image */}
-              <Link href={`/blog/${post.slug}`} className="block relative aspect-[16/9] overflow-hidden bg-slate-100">
-                {post.image ? (
-                  <Image
-                    src={post.image}
-                    alt={post.imageAlt ?? post.title}
-                    fill
-                    loading="lazy"
-                    className="object-cover hover:scale-[1.03] transition-transform duration-300"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
-                    <svg className="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                        d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                )}
+              <Link href={`/blog/${post.slug}`}>
+                <div className="relative aspect-video bg-slate-100 mb-4 overflow-hidden rounded-lg">
+                  {post.image && post.image !== '/images/placeholder.jpg' ? (
+                    <Image
+                      src={post.image}
+                      alt={post.imageAlt || post.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-slate-400">
+                      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                  )}
+                </div>
               </Link>
 
-              {/* Content */}
-              <div className="p-6 flex flex-col flex-1">
-                {/* Category + date */}
-                <div className="flex items-center gap-3 mb-3">
-                  {post.category && (
-                    <span className="text-xs font-semibold text-[#1F3D2B] bg-green-50 border border-green-100 px-2.5 py-1 rounded-full">
-                      {post.category}
-                    </span>
-                  )}
-                  <time
-                    dateTime={post.date}
-                    className="text-xs text-slate-400 font-medium"
-                  >
-                    {new Date(post.date).toLocaleDateString('uk-UA', {
-                      day: 'numeric',
-                      month: 'long',
-                      year: 'numeric',
-                    })}
-                  </time>
-                </div>
+              <div className="flex items-center gap-2 mb-2">
+                {post.category && (
+                  <span className="text-xs font-medium text-[#1F3D2B] bg-green-50 px-2 py-0.5 rounded-full">
+                    {post.category}
+                  </span>
+                )}
+                <span className="text-xs text-slate-400">
+                  {post.date ? new Date(post.date).toLocaleDateString('uk-UA') : ''}
+                </span>
+              </div>
 
-                {/* Title */}
-                <h2 className="text-lg font-bold text-slate-900 leading-snug mb-3 hover:text-[#1F3D2B] transition-colors">
-                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                </h2>
+              <h2 className="font-bold text-lg mb-2">
+                <Link href={`/blog/${post.slug}`} className="hover:text-[#1F3D2B] transition-colors">
+                  {post.title}
+                </Link>
+              </h2>
 
-                {/* Excerpt */}
-                <p className="text-sm text-slate-500 leading-relaxed line-clamp-3 flex-1">
-                  {post.excerpt}
-                </p>
+              <p className="text-sm text-slate-500 flex-1">
+                {(post.excerpt || '').replace(/<[^>]+>/g, '').slice(0, 140)}
+              </p>
 
-                {/* Footer: author + link */}
-                <div className="mt-5 pt-5 border-t border-slate-100 flex items-center justify-between">
-                  {post.author && (
-                    <span className="text-xs text-slate-400 font-medium truncate max-w-[60%]">
-                      {post.author}
-                    </span>
-                  )}
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="text-sm font-semibold text-[#1F3D2B] hover:underline underline-offset-2 flex-shrink-0"
-                  >
-                    Читати →
-                  </Link>
-                </div>
+              <div className="mt-4 flex justify-between items-center text-sm">
+                <span className="text-slate-400 text-xs">
+                  {post.author || ''}
+                </span>
+
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="text-[#1F3D2B] font-semibold hover:underline"
+                >
+                  Читати →
+                </Link>
               </div>
             </article>
           ))}
