@@ -58,7 +58,7 @@ export default function HearingTestKhmelnytskyi() {
             '@type': 'MedicalBusiness',
             name: 'Центр слуху «Почути Все» — Хмельницький',
             url: 'https://pochutyvse.com.ua/perevirka-slukhu-khmelnytskyi',
-            telephone: '+380978884755',
+            telephone: '+380679119548',
             address: {
               '@type': 'PostalAddress',
               streetAddress: 'вул. Кам\'янецька, 19/а',
@@ -146,7 +146,7 @@ export default function HearingTestKhmelnytskyi() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href="tel:+380978884755"
+                href="tel:+380679119548"
                 className="inline-flex items-center gap-2.5 bg-white text-[#1F3D2B] font-bold px-7 py-3.5 rounded-xl shadow-lg hover:bg-slate-100 transition-colors text-base"
               >
                 <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -251,13 +251,13 @@ export default function HearingTestKhmelnytskyi() {
               </div>
             </div>
             <a
-              href="tel:+380978884755"
+              href="tel:+380679119548"
               className="flex items-center justify-center gap-2 bg-[#1F3D2B] hover:bg-[#162d1f] text-white font-bold py-3.5 px-8 rounded-xl transition-colors w-full sm:w-auto"
             >
               <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              Записатися: +38 (097) 888-47-55
+              Записатися: +38 (067) 911-95-48
             </a>
           </div>
         </div>
@@ -333,8 +333,8 @@ export default function HearingTestKhmelnytskyi() {
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-white/60 text-xs font-bold uppercase tracking-widest mb-1">Телефон</span>
-              <a href="tel:+380978884755" className="font-bold text-white hover:text-slate-200 transition-colors text-lg">
-                +38 (097) 888-47-55
+              <a href="tel:+380679119548" className="font-bold text-white hover:text-slate-200 transition-colors text-lg">
+                +38 (067) 911-95-48
               </a>
               <span className="text-white/60 text-xs mt-1">Дзвоніть — відповімо одразу</span>
             </div>
