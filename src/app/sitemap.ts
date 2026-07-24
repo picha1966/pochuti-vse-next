@@ -19,6 +19,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await getAllProducts();
   const posts = await getAllPosts();
 
+  const latestPostDate = posts.length > 0
+    ? new Date(Math.max(...posts.map((p) => new Date(p.date).getTime())))
+    : DATES.blog;
+
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE,                                          lastModified: DATES.homepage,         changeFrequency: 'weekly',  priority: 1.0 },
     { url: `${BASE}/catalog`,                             lastModified: DATES.catalog,          changeFrequency: 'daily',   priority: 0.9 },
@@ -30,11 +34,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/remont-sluhovykh-aparativ`,           lastModified: DATES.servicePages,     changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/perevirka-slukhu-vinnytsia`,          lastModified: DATES.servicePages,     changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/perevirka-slukhu-khmelnytskyi`,       lastModified: DATES.servicePages,     changeFrequency: 'monthly', priority: 0.85 },
-    { url: `${BASE}/blog`,                                lastModified: DATES.blog,             changeFrequency: 'weekly',  priority: 0.7 },
+    { url: `${BASE}/blog`,                                lastModified: latestPostDate,          changeFrequency: 'weekly',  priority: 0.7 },
+    { url: `${BASE}/vse-pro-slukh`,                       lastModified: DATES.servicePages,     changeFrequency: 'monthly', priority: 0.7 },
   ];
 
   const productRoutes: MetadataRoute.Sitemap = products.map((p) => ({
-    url: `${BASE}/catalog/${p.slug}`,
+    url: encodeURI(`${BASE}/catalog/${p.slug}`),
     lastModified: DATES.products,
     changeFrequency: 'monthly',
     priority: 0.8,
@@ -42,8 +47,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${BASE}/blog/${p.slug}`,
-    lastModified: DATES.posts,
-    changeFrequency: 'monthly',
+    lastModified: p.date ? new Date(p.date) : DATES.posts,
+    changeFrequency: 'weekly' as const,
     priority: 0.6,
   }));
 

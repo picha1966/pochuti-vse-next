@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     description: 'Слухові апарати у Вінниці: ціни від 7 000 грн, безкоштовний скринінг слуху, налаштування, гарантія 1 рік. 30+ років досвіду. +38 (067) 911-95-48.',
     type: 'website',
     locale: 'uk_UA',
+    url: '/vinnytsia',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
 };
@@ -166,13 +167,13 @@ export default async function VinnytsiaPage() {
         }}
       />
 
-      {/* JSON-LD HearingAidProvider Vinnytsia */}
+      {/* JSON-LD MedicalBusiness Vinnytsia */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'HearingAidProvider',
+            '@type': 'MedicalBusiness',
             name: 'Центр слуху «Почути Все» — Вінниця',
             url: 'https://pochutyvse.com.ua/vinnytsia',
             telephone: '+380679119548',

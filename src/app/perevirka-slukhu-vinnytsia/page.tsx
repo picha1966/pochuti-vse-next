@@ -16,7 +16,8 @@ export const metadata: Metadata = {
       'Перевірка слуху у Вінниці — комп\'ютерний скринінг слуху. Безкоштовно лише при покупці слухового апарата у нашому центрі. Запис на прийом.',
     type: 'website',
     locale: 'uk_UA',
-    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
+    url: '/perevirka-slukhu-vinnytsia',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
 };
 
@@ -67,13 +68,6 @@ export default function HearingTestVinnytsia() {
               addressCountry: 'UA',
             },
             openingHours: ['Mo-Fr 10:00-17:00'],
-            medicalSpecialty: 'Audiology',
-            availableService: {
-              '@type': 'MedicalProcedure',
-              name: 'Перевірка слуху (скринінг слуху)',
-              procedureType: 'DiagnosticProcedure',
-              description: 'Комп\'ютерний скринінг слуху у Вінниці. Визначення ступеня та характеру втрати слуху.',
-            },
           }),
         }}
       />

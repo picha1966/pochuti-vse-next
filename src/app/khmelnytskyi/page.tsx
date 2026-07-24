@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     description: 'Слухові апарати у Хмельницькому: ціни від 7 000 грн, безкоштовний скринінг слуху, налаштування, гарантія 1 рік. 30+ років досвіду. +38 (067) 911-95-48.',
     type: 'website',
     locale: 'uk_UA',
+    url: '/khmelnytskyi',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
 };
@@ -166,13 +167,13 @@ export default async function KhmelnytskyiPage() {
         }}
       />
 
-      {/* JSON-LD HearingAidProvider */}
+      {/* JSON-LD MedicalBusiness */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'HearingAidProvider',
+            '@type': 'MedicalBusiness',
             name: 'Центр слуху «Почути Все» — Хмельницький',
             url: 'https://pochutyvse.com.ua/khmelnytskyi',
             telephone: '+380679119548',
@@ -665,8 +666,8 @@ export default async function KhmelnytskyiPage() {
                 q: 'Чи надаєте сервісне обслуговування після купівлі?',
                 a: 'Так. Безкоштовні повторні налаштування — протягом 30 днів. Надалі — гарантійний та позагарантійний ремонт, чищення, заміна трубок і батарейок.',
               },
-            ].map((item, i) => (
-              <details key={i} className="group bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
+            ].map((item) => (
+              <details key={item.q} className="group bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
                 <summary className="flex items-center justify-between gap-3 p-5 cursor-pointer font-semibold text-slate-900 text-sm hover:bg-slate-100 transition-colors list-none">
                   {item.q}
                   <svg className="w-5 h-5 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
