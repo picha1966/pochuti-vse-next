@@ -8,7 +8,7 @@ import ContactSection from '@/components/home/ContactSection';
 import StickyMobileCTA from '@/components/StickyMobileCTA';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Купити слуховий апарат у Вінниці — Підбір та Ціни | Почути Все' },
+  title: { absolute: 'Слухові апарати у Вінниці — купити, підбір і ціни | Почути Все' },
   description:
     'Купити слуховий апарат у Вінниці — підбір після скринінгу слуху, налаштування, ціни від 7 000 грн. 30+ років досвіду. Вул. Театральна, 10. +38 (067) 911-95-48.',
   alternates: { canonical: '/vinnytsia' },
