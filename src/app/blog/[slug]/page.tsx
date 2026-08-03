@@ -282,12 +282,13 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Featured image */}
         {post.image && post.image !== '/images/placeholder.jpg' && (
-          <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-8">
+          <div className="mb-8 w-full">
             <Image
               src={post.image}
               alt={post.imageAlt || post.title}
-              fill
-              className="object-cover"
+              width={1600}
+              height={1200}
+              className="block h-auto w-full rounded-xl object-contain"
               priority
               sizes="(max-width: 768px) 100vw, 896px"
             />
