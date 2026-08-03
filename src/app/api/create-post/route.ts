@@ -55,6 +55,8 @@ const FIELD_LIMITS: Record<string, number> = {
   image: 500,
 };
 
+const CANONICAL_SITE_URL = 'https://pochutyvse.com.ua';
+
 function cleanTitle(title: string): string {
   let cleaned = title;
   // Remove patterns like (123456789), [123], {123}
@@ -127,6 +129,23 @@ function normalizeTitleForCompare(title: string): string {
 function titleExists(posts: Post[], title: string): boolean {
   const normalized = normalizeTitleForCompare(title);
   return posts.some((p) => normalizeTitleForCompare(p.title) === normalized);
+}
+
+function publicationResult(post: Post, status: 'created' | 'already_existing') {
+  const canonicalSlug = post.slug;
+  return {
+    success: true,
+    status,
+    document_id: post._id,
+    canonical_slug: canonicalSlug,
+    canonical_url: CANONICAL_SITE_URL + '/blog/' + encodeURIComponent(canonicalSlug),
+    image_url: post.image.startsWith('/') ? CANONICAL_SITE_URL + post.image : post.image,
+    created: status === 'created',
+    already_existing: status === 'already_existing',
+    // The API writes the authoritative JSON record. Public visibility is
+    // deliberately verified by the caller before Telegram reports success.
+    verification_status: 'unverified',
+  };
 }
 
 function normalizeImagePath(image: string): string {
@@ -312,23 +331,18 @@ export async function POST(request: NextRequest) {
       posts = [];
     }
 
-    // === DUPLICATE CHECKS ===
-    const baseSlug = typeof slug === 'string' && slug.trim() ? slug.trim() : generateSlug(title);
-    const finalSlug = ensureUniqueSlug(posts, baseSlug);
-
-    if (slugExists(posts, finalSlug)) {
-      return NextResponse.json(
-        { success: false, error: 'post with this slug already exists' },
-        { status: 409 }
-      );
+    // === AUTHORITATIVE IDEMPOTENCY ===
+    // A retry must identify the actual existing JSON document and return its
+    // canonical identity. Never make the Telegram worker infer a URL from a
+    // local history file or a requested slug.
+    const requestedSlug = typeof slug === 'string' && slug.trim() ? slug.trim() : generateSlug(title);
+    const existing = posts.find((post) => post.slug === requestedSlug)
+      ?? posts.find((post) => normalizeTitleForCompare(post.title) === normalizeTitleForCompare(title));
+    if (existing) {
+      return NextResponse.json(publicationResult(existing, 'already_existing'));
     }
 
-    if (titleExists(posts, title)) {
-      return NextResponse.json(
-        { success: false, error: 'post with this title already exists' },
-        { status: 409 }
-      );
-    }
+    const finalSlug = ensureUniqueSlug(posts, requestedSlug);
 
     // === CREATE POST ===
     const newPost: Post = {
@@ -365,10 +379,7 @@ export async function POST(request: NextRequest) {
     revalidatePath('/blog');
     revalidatePath(`/blog/${finalSlug}`);
 
-    return NextResponse.json({
-      success: true,
-      slug: finalSlug,
-    });
+    return NextResponse.json(publicationResult(newPost, 'created'));
   } catch (error) {
     console.error('[create-post] error:', error);
     return NextResponse.json(
