@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Product } from '@/types';
+import { getCanonicalProductPath } from '@/lib/productSlug';
 
 interface ProductCardProps {
   product: Product;
@@ -56,11 +57,12 @@ export default function ProductCard({ product }: ProductCardProps) {
   const badgeColor = categoryBadgeColors[product.categorySlug] ?? 'bg-slate-600';
   const priceFrom = product.price ? formatPriceFrom(product.price) : '';
   const hasImage = !!product.image && !imgError;
+  const detailHref = getCanonicalProductPath(product.slug) ?? '/catalog';
 
   return (
     <article className="bg-white rounded-2xl border border-slate-100 hover:shadow-lg transition-all duration-200 hover:-translate-y-1 group overflow-hidden flex flex-col">
       {/* Image */}
-      <Link href={`/catalog/${product.slug}`} className="block" tabIndex={-1} aria-hidden>
+      <Link href={detailHref} className="block" tabIndex={-1} aria-hidden>
         <div className="relative bg-white overflow-hidden aspect-[4/3]">
           {hasImage ? (
             <Image
@@ -115,7 +117,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           <div className="flex gap-2">
             <Link
-              href={`/catalog/${product.slug}`}
+              href={detailHref}
               className="flex-1 flex items-center justify-center gap-1.5 bg-[#1F3D2B] hover:bg-[#162d1f] text-white text-sm font-bold py-2.5 px-3 rounded-xl transition-colors"
             >
               Детальніше

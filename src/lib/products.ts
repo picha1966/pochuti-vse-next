@@ -15,14 +15,23 @@ import {
   type SanityCategory,
 } from './sanity/queries';
 import { urlForImageStr } from './sanity/image';
+import { normalizeProductSlug } from './productSlug';
 
 // ─── Mappers ──────────────────────────────────────────────────────────────────
 
-function toProduct(s: SanityProduct): Product {
+function normalizeProduct(product: Product): Product | null {
+  const slug = normalizeProductSlug(product.slug);
+  return slug ? { ...product, slug } : null;
+}
+
+export function toProduct(s: SanityProduct): Product | null {
+  const slug = normalizeProductSlug(s.slug);
+  if (!slug) return null;
+
   return {
     id: 0,
     title: s.title,
-    slug: s.slug,                           // already a string from GROQ projection
+    slug,
     description: s.shortDescription ?? '',
     seoTitle: s.seo?.metaTitle ?? s.title,
     seoDescription: s.seo?.metaDescription ?? '',
@@ -32,6 +41,10 @@ function toProduct(s: SanityProduct): Product {
     isAccessory: s.isAccessory ?? false,
     image: s.images?.[0] ? urlForImageStr(s.images[0]) : '',
   };
+}
+
+function isProduct(product: Product | null): product is Product {
+  return product !== null;
 }
 
 function toCategory(s: SanityCategory): Category {
@@ -46,17 +59,35 @@ function toCategory(s: SanityCategory): Category {
 export async function getAllProducts(): Promise<Product[]> {
   if (isSanityConfigured) {
     const data = await sanityGetAllProducts();
-    if (data.length > 0) return data.map(toProduct);
+    if (data.length > 0) return data.map(toProduct).filter(isProduct);
   }
-  return productsData as Product[];
+  return (productsData as Product[]).map(normalizeProduct).filter(isProduct);
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {
+  const canonicalSlug = normalizeProductSlug(slug);
+  if (!canonicalSlug) return undefined;
+
   if (isSanityConfigured) {
-    const p = await sanityGetProductBySlug(slug);
-    if (p) return toProduct(p);
+    for (const candidate of new Set([canonicalSlug, slug])) {
+      const product = await sanityGetProductBySlug(candidate);
+      if (product) {
+        const normalized = toProduct(product);
+        if (normalized?.slug === canonicalSlug) return normalized;
+      }
+    }
+
+    const product = (await sanityGetAllProducts())
+      .map(toProduct)
+      .filter(isProduct)
+      .find((item) => item.slug === canonicalSlug);
+    if (product) return product;
   }
-  return (productsData as Product[]).find((p) => p.slug === slug);
+
+  return (productsData as Product[])
+    .map(normalizeProduct)
+    .filter(isProduct)
+    .find((product) => product.slug === canonicalSlug);
 }
 
 export async function getProductsByCategory(categorySlug: string): Promise<Product[]> {

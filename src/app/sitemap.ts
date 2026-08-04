@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getAllProducts } from '@/lib/products';
 import { getAllPosts } from '@/lib/posts';
+import { getCanonicalProductPath } from '@/lib/productSlug';
 
 const BASE = 'https://pochutyvse.com.ua';
 
@@ -38,12 +39,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/vse-pro-slukh`,                       lastModified: DATES.servicePages,     changeFrequency: 'monthly', priority: 0.7 },
   ];
 
-  const productRoutes: MetadataRoute.Sitemap = products.map((p) => ({
-    url: encodeURI(`${BASE}/catalog/${p.slug}`),
-    lastModified: DATES.products,
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  }));
+  const productRoutes: MetadataRoute.Sitemap = products.flatMap((product) => {
+    const path = getCanonicalProductPath(product.slug);
+    if (!path) return [];
+
+    return [{
+      url: new URL(path, BASE).href,
+      lastModified: DATES.products,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    }];
+  });
 
   const postRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
     url: `${BASE}/blog/${p.slug}`,

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getProductBySlug, getAllProducts } from '@/lib/products';
+import { getCanonicalProductPath } from '@/lib/productSlug';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -22,16 +23,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     product.seoDescription && product.seoDescription.length > 0
       ? product.seoDescription
       : product.description.slice(0, 160);
+  const canonicalPath = getCanonicalProductPath(product.slug);
+  if (!canonicalPath) return {};
 
   return {
     title: product.seoTitle || product.title,
     description,
-    alternates: { canonical: `/catalog/${slug}` },
+    alternates: { canonical: canonicalPath },
     openGraph: {
       title: product.seoTitle || product.title,
       description,
       type: 'website',
       locale: 'uk_UA',
+      url: canonicalPath,
       images: product.image
         ? [{ url: `https://pochutyvse.com.ua${product.image}`, width: 800, height: 800 }]
         : [{ url: '/og-image.jpg', width: 1200, height: 630 }],
@@ -48,6 +52,8 @@ export default async function ProductPage({ params }: PageProps) {
     product.seoDescription && product.seoDescription.length > 0
       ? product.seoDescription
       : product.description.slice(0, 160);
+  const canonicalPath = getCanonicalProductPath(product.slug);
+  if (!canonicalPath) notFound();
 
   const brandName = product.title.toLowerCase().includes('audio service')
     ? 'Audio Service'
@@ -92,7 +98,7 @@ export default async function ProductPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 2,
         name: product.title,
-        item: `https://pochutyvse.com.ua/catalog/${slug}`,
+        item: `https://pochutyvse.com.ua${canonicalPath}`,
       },
     ],
   };
